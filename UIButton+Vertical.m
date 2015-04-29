@@ -58,21 +58,43 @@
 - (void)setBadgeStr:(NSString *)str
 {
     UIBadgeView * badgeView = (UIBadgeView *)[self viewWithTag:'b'];
+    UIView *myBadgeView = [self viewWithTag:'c'];
     if ([str length] > 0)
     {
+        /*
         if (!badgeView)
         {
             badgeView = [[UIBadgeView alloc] initWithFrame:CGRectMake(self.center.x+5, 0, 40, 16)];
+            NSLog(@"sel.fframe is %f",self.frame.size.width);
+            //badgeView = [[UIBadgeView alloc] initWithFrame:CGRectMake(self.frame.size.width - 35, 3, 5, 5)];
             badgeView.tag = 'b';
             badgeView.badgeColor = self.badgeStringColor;
+           
             [self addSubview:badgeView];
+            
         }
         badgeView.badgeString = str;
+         */
+        
+        if (!myBadgeView) {
+            myBadgeView = [[UIView alloc] initWithFrame:CGRectMake((self.frame.size.width/2.0) + 8, 5, 9, 9)];
+            myBadgeView.layer.cornerRadius = myBadgeView.frame.size.width/2.0;
+            myBadgeView.backgroundColor = [UIColor redColor];
+            myBadgeView.tag = 'c';
+            
+            [self addSubview:myBadgeView];
+            
+        }
+        
     }else{
         
         if (badgeView)
         {
             [badgeView removeFromSuperview];
+        }
+        
+        if (myBadgeView) {
+            [myBadgeView removeFromSuperview];
         }
     }
 }
